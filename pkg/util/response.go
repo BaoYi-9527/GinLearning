@@ -24,3 +24,12 @@ func ErrorResponse(c *gin.Context, code int) {
 		"data": map[string]interface{}{},
 	})
 }
+
+func SuccessMessage(c *gin.Context) {
+	code := e.SUCCESS
+	c.JSON(http.StatusOK, gin.H{
+		"code": code,
+		"msg":  e.GetMsg(code),
+		"data": map[string]interface{}{},
+	})
+}
