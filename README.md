@@ -56,7 +56,8 @@ GinLearning/
 ├── main.go
 ├── middleware
 ├── models
-│   └── models.go
+│   ├── models.go
+│   └── tag.go
 ├── pkg
 │   ├── e
 │   │   ├── code.go
@@ -64,8 +65,13 @@ GinLearning/
 │   ├── setting
 │   │   └── setting.go
 │   └── util
+│       ├── response.go
 │       └── pagination.go
 ├── routers
+│   ├── api
+│   │   └── v1
+│   │       ├── article.go
+│   │       └── tag.go
 │   └── router.go
 ├── runtime
 ```

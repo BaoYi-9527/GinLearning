@@ -7,7 +7,7 @@ import (
 )
 
 // SuccessResponse 成功返回
-func SuccessResponse(c *gin.Context, data map[string]interface{}) {
+func SuccessResponse(c *gin.Context, data interface{}) {
 	code := e.SUCCESS
 	c.JSON(http.StatusOK, gin.H{
 		"code": code,

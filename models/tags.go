@@ -13,6 +13,18 @@ type Tag struct {
 	State      int    `json:"state"`
 }
 
+// BeforeCreate create 触发器
+func (tag *Tag) BeforeCreate(scope *gorm.Scope) error {
+	scope.SetColumn("CreatedOn", time.Now().Unix())
+	return nil
+}
+
+// BeforeUpdate update 触发器
+func (tag *Tag) BeforeUpdate(scope *gorm.Scope) error {
+	scope.SetColumn("ModifiedOn", time.Now().Unix())
+	return nil
+}
+
 // GetTags 获取标签列表
 func GetTags(pageNum int, pageSize int, maps interface{}) (tags []Tag) {
 	db.Where(maps).Offset(pageNum).Limit(pageSize).Find(&tags)
@@ -64,16 +76,4 @@ func AddTag(name string, state int, createdBy string) bool {
 		CreatedBy: createdBy,
 	})
 	return true
-}
-
-// BeforeCreate create 触发器
-func (tag *Tag) BeforeCreate(scope *gorm.Scope) error {
-	scope.SetColumn("CreatedOn", time.Now().Unix())
-	return nil
-}
-
-// BeforeUpdate update 触发器
-func (tag *Tag) BeforeUpdate(scope *gorm.Scope) error {
-	scope.SetColumn("ModifiedOn", time.Now().Unix())
-	return nil
 }
