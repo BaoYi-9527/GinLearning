@@ -4,6 +4,11 @@
 
 + [《跟煎鱼学 Go》](https://eddycjy.com/go-categories/)
 + [Go ini 配置文件操作库](https://ini.unknwon.io/)
++ [Gin：Golang 的一个微框架，性能极佳](https://github.com/gin-gonic/gin)
++ [beego-validation：beego 的表单验证库，中文文档](https://github.com/astaxie/beego/tree/master/validation)
++ [gorm，对开发人员友好的 ORM 框架](https://gorm.io/zh_CN/docs/)
++ [com，一个小而美的工具包](https://github.com/Unknwon/com)
++ []()
 
 ### 1.起步
 
@@ -26,6 +31,8 @@ go get -u github.com/unknwon/com
 go get -u github.com/jinzhu/gorm
 # 拉取 MySQL 驱动
 go get -u github.com/go-sql-driver/mysql
+# beego-validation
+go get github.com/astaxie/beego/validation
 ```
 
 #### 1.2 目录结构
@@ -40,4 +47,25 @@ GinLearning/
 ├── tmp             // 临时文件
 ├── resource        // 资源文件
 └── runtime         // 应用运行时数据
+```
+
+```text
+GinLearning/
+├── conf
+│   └── app.ini
+├── main.go
+├── middleware
+├── models
+│   └── models.go
+├── pkg
+│   ├── e
+│   │   ├── code.go
+│   │   └── msg.go
+│   ├── setting
+│   │   └── setting.go
+│   └── util
+│       └── pagination.go
+├── routers
+│   └── router.go
+├── runtime
 ```

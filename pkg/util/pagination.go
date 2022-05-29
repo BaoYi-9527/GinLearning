@@ -7,7 +7,7 @@ import (
 )
 
 // GetPage 获取分页页码
-func GetPage(c *gin.Context) int  {
+func GetPage(c *gin.Context) int {
 	result := 0
 	page, _ := com.StrTo(c.Query("page")).Int()
 	if page > 0 {
