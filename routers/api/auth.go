@@ -26,6 +26,10 @@ func GetAuth(c *gin.Context) {
 	data := make(map[string]interface{})
 	code := e.INVALID_PARAMS
 	if ok {
+		// 此处使用明文账密去做JWT的处理是不合适的
+		// 一般会对密码进行非对称加密后存储在库中
+		// 而 JWT 的token生成一般也会加盐，并在 Redis 或 MySQL中做维护
+		// 但这里只是一个学习的项目 所以不做过多考虑
 		isExist := models.CheckAuth(username, password)
 		if isExist {
 			token, err := util.GenerateToken(username, password)
