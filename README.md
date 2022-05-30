@@ -33,6 +33,8 @@ go get -u github.com/jinzhu/gorm
 go get -u github.com/go-sql-driver/mysql
 # beego-validation
 go get github.com/astaxie/beego/validation
+# jwt-go依赖
+go get -u github.com/dgrijalva/jwt-go
 ```
 
 #### 1.2 目录结构
@@ -55,7 +57,11 @@ GinLearning/
 │   └── app.ini
 ├── main.go
 ├── middleware
+│   └── jwt
+│       └── jwt.go
 ├── models
+│   ├── article.go
+│   ├── auth.go
 │   ├── models.go
 │   └── tag.go
 ├── pkg
@@ -65,10 +71,11 @@ GinLearning/
 │   ├── setting
 │   │   └── setting.go
 │   └── util
-│       ├── response.go
+│       ├── jwt.go
 │       └── pagination.go
 ├── routers
 │   ├── api
+│   │   ├── auth.go
 │   │   └── v1
 │   │       ├── article.go
 │   │       └── tag.go

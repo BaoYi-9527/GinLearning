@@ -21,7 +21,7 @@ func ErrorResponse(c *gin.Context, code int) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": code,
 		"msg":  e.GetMsg(code),
-		"data": map[string]interface{}{},
+		"data": []interface{}{},
 	})
 }
 
@@ -30,6 +30,6 @@ func SuccessMessage(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"code": code,
 		"msg":  e.GetMsg(code),
-		"data": map[string]interface{}{},
+		"data": []interface{}{},
 	})
 }

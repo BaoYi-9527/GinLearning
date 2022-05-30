@@ -1,7 +1,9 @@
 package routers
 
 import (
+	"GinLearning/middleware/jwt"
 	"GinLearning/pkg/setting"
+	"GinLearning/routers/api"
 	v1 "GinLearning/routers/api/v1"
 	"github.com/gin-gonic/gin"
 )
@@ -20,8 +22,13 @@ func InitRouter() *gin.Engine {
 		})
 	})
 
+	// 获取鉴权 Token
+	r.GET("/auth", api.GetAuth)
+
 	// 注册api路由
 	apiV1 := r.Group("/api/v1")
+	// 接入鉴权中间件
+	apiV1.Use(jwt.JWT())
 	{
 		// 获取标签列表
 		apiV1.GET("/tags", v1.GetTags)
