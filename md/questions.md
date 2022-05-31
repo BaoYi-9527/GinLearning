@@ -107,3 +107,25 @@ D:\Go\pkg\mod\github.com\fvbock\endless@v0.0.0-20170109170031-447134032cb6\endle
    + 鼠标右击 `types_windows.go` ，`属性->安全->编辑`  选择你的组或用户名后勾选相关权限后确认即可；
    + 如果找不到你的 `组或用户名`, `属性->安全->高级->添加->选择主体->高级->立即查找`
 
+
+### 5. can not find schema type: "v1.json"
+
+```text
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+```
+
+修改为:
+
+```text
+// @Success 200 {string} string "{"code":200,"data":{},"msg":"ok"}"
+```
+
+### 6. no swag has yet been registered
+
+`router.go` 中：
+```go
+import (
+	...
+    _ "GinLearning/docs"    // 你项目下的 docs 地址
+)
+```

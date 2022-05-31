@@ -37,6 +37,12 @@ go get github.com/astaxie/beego/validation
 go get -u github.com/dgrijalva/jwt-go
 # endless 服务重新启动零停机
 go get -u github.com/fvbock/endless
+# swagger
+go get -u github.com/swaggo/swag/cmd/swag@v1.6.5
+# 安装GIN-Swagger
+go get -u github.com/swaggo/gin-swagger@v1.2.0 
+go get -u github.com/swaggo/files
+go get -u github.com/alecthomas/template
 ```
 
 #### 1.2 目录结构
@@ -88,10 +94,6 @@ GinLearning/
 ├── runtime
 ```
 
+#### 1.3 Swagger 
 
-```bash
-$ tasklist | grep 24484
-Image Name                     PID Session Name        Session#    Mem Usage
-========================= ======== ================ =========== ============
-main.exe                     24484 Console                    1     26,384 K
-```
+`http://127.0.0.1:8000/swagger/index.html`

@@ -10,7 +10,14 @@ import (
 	"github.com/unknwon/com"
 )
 
-// GetTags 获取多个文章标签
+// GetTags
+// @Summary Get multiple article tags
+// @Produce  json
+// @Param name query string false "Name"
+// @Param state query int false "State"
+// @Success 200 {object} models.Tag
+// @Failure 403 {object} string {"code":400,"data":[],"msg":"请求参数错误"}
+// @Router /api/v1/tags [get]
 func GetTags(c *gin.Context) {
 	// 获取 QueryString 请求参数
 	name := c.Query("name")
@@ -32,7 +39,14 @@ func GetTags(c *gin.Context) {
 	util.SuccessResponse(c, data)
 }
 
-// AddTag 新增文章标签
+// AddTag
+// @Summary 新增文章标签
+// @Produce  json
+// @Param name query string true "Name"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} string "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags [post]
 func AddTag(c *gin.Context) {
 	name := c.Query("name")
 	state := com.StrTo(c.DefaultQuery("state", "0")).MustInt()
@@ -60,7 +74,15 @@ func AddTag(c *gin.Context) {
 
 }
 
-// EditTag 修改文章标签
+// EditTag
+// @Summary 修改文章标签
+// @Produce  json
+// @Param id path int true "ID"
+// @Param name query string true "ID"
+// @Param state query int false "State"
+// @Param modified_by query string true "ModifiedBy"
+// @Success 200 {string} string "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags/{id} [put]
 func EditTag(c *gin.Context) {
 	id := com.StrTo(c.Param("id")).MustInt()
 	name := c.Query("name")

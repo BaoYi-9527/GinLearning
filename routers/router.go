@@ -1,11 +1,14 @@
 package routers
 
 import (
+	_ "GinLearning/docs"
 	"GinLearning/middleware/jwt"
 	"GinLearning/pkg/setting"
 	"GinLearning/routers/api"
 	v1 "GinLearning/routers/api/v1"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func InitRouter() *gin.Engine {
@@ -24,6 +27,8 @@ func InitRouter() *gin.Engine {
 
 	// 获取鉴权 Token
 	r.GET("/auth", api.GetAuth)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// 注册api路由
 	apiV1 := r.Group("/api/v1")
