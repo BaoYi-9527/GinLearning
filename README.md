@@ -35,6 +35,8 @@ go get -u github.com/go-sql-driver/mysql
 go get github.com/astaxie/beego/validation
 # jwt-go依赖
 go get -u github.com/dgrijalva/jwt-go
+# endless 服务重新启动零停机
+go get -u github.com/fvbock/endless
 ```
 
 #### 1.2 目录结构
@@ -84,4 +86,12 @@ GinLearning/
 │   │       └── tag.go
 │   └── router.go
 ├── runtime
+```
+
+
+```bash
+$ tasklist | grep 24484
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+main.exe                     24484 Console                    1     26,384 K
 ```

@@ -4,19 +4,27 @@ import (
 	"GinLearning/pkg/setting"
 	"GinLearning/routers"
 	"fmt"
-	"net/http"
+	"github.com/fvbock/endless"
+	"log"
+	"syscall"
 )
 
 func main() {
-	// 路由
-	router := routers.InitRouter()
-	s := &http.Server{
-		Addr:           fmt.Sprintf(":%d", setting.HTTPPort), // 监听的端口号
-		Handler:        router,                               // http 句柄 实质为 ServerHTTP，用于处理程序响应HTTP请求
-		ReadTimeout:    setting.ReadTimeout,                  // 允许读取的最大时间
-		WriteTimeout:   setting.WriteTimeout,                 // 允许写入的最大时间
-		MaxHeaderBytes: 1 << 20,                              // 请求头的最大字节数
+
+	endless.DefaultReadTimeOut = setting.ReadTimeout
+	endless.DefaultWriteTimeOut = setting.WriteTimeout
+	endless.DefaultMaxHeaderBytes = 1 << 20
+	endPoint := fmt.Sprintf(":%d", setting.HTTPPort)
+
+	// endless.NewServer 返回一个初始化的 endlessServer 对象
+	server := endless.NewServer(endPoint, routers.InitRouter())
+	// server.BeforeBegin 时输出当前进程的 pid
+	server.BeforeBegin = func(add string) {
+		log.Printf("Actual pid is %d", syscall.Getpid())
 	}
-	// 监听服务服务 监听TCP网路地址、ADDR 和调用应用程序处理连接上的请求
-	s.ListenAndServe()
+	// 调用 server.ListenAndServe 将实际“启动”服务
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Printf("Server err: %v", err)
+	}
 }
