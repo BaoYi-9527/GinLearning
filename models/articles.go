@@ -1,10 +1,5 @@
 package models
 
-import (
-	"github.com/jinzhu/gorm"
-	"time"
-)
-
 type Article struct {
 	Model
 	TagID      int    `json:"tag_id" gorm:"index"` // gorm:"index" 声明这个字段是索引
@@ -15,18 +10,6 @@ type Article struct {
 	CreatedBy  string `json:"created_by"`
 	ModifiedBy string `json:"modified_by"`
 	State      int    `json:"state"`
-}
-
-// BeforeCreate create 触发器
-func (article *Article) BeforeCreate(scope *gorm.Scope) error {
-	scope.SetColumn("CreatedOn", time.Now().Unix())
-	return nil
-}
-
-// BeforeUpdate update 触发器
-func (article *Article) BeforeUpdate(scope *gorm.Scope) error {
-	scope.SetColumn("ModifiedOn", time.Now().Unix())
-	return nil
 }
 
 // ExistsArticleByID 文章是否存在
