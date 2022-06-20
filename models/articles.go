@@ -73,3 +73,9 @@ func DeleteArticle(id int) bool {
 	db.Where("id = ?", id).Delete(Article{})
 	return true
 }
+
+// CleanAllArticle 硬删除无效 Article
+func CleanAllArticle() bool {
+	db.Unscoped().Where("deleted != ?", 0).Delete(&Article{})
+	return true
+}

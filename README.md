@@ -43,6 +43,8 @@ go get -u github.com/swaggo/swag/cmd/swag@v1.6.5
 go get -u github.com/swaggo/gin-swagger@v1.2.0 
 go get -u github.com/swaggo/files
 go get -u github.com/alecthomas/template
+# 引入 cron 包
+go get -u github.com/robfig/cron
 ```
 
 #### 1.2 目录结构
